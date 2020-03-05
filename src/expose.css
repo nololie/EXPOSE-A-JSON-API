@@ -1,0 +1,28 @@
+#visitorForm {
+    margin-left: 25%;
+    margin-right: 25%;
+    padding: 1%;
+    border: rgb(25, 41, 36);
+    border-style: ridge;
+    font-weight: 600;
+    background-color: rgba(0, 131, 87, 0.336);
+}
+
+input {
+    margin-bottom: 10px;
+    border-color: rgba(0, 0, 0, 0.432);
+}
+
+input[type='text'] {
+    width: 100%;
+}
+
+.comments {
+    height: 20vh;
+}
+
+input[type='submit'] {
+    width: 25%;
+    height: 5vh;
+    font: 15px;
+}
