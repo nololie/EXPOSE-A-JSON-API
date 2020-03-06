@@ -11,11 +11,7 @@ const { Client } = require("pg");
 const client = new Client();
 client.connect();
 
-// app.set('view engine', 'pug')
-// app.set('views', path.join(__dirname, 'views/'))
-
 app.use(express.urlencoded({ extended: true }));
-// app.use(express.static('.'));
 app.use(express.json());
 
 const addNewVisitor = async(name, assistant_name, age, visit_date, visit_time, comments) => {
@@ -37,13 +33,14 @@ const addNewVisitor = async(name, assistant_name, age, visit_date, visit_time, c
         console.log(e);
         throw e;
     }
+
 };
 
 app.post('/addNewVisitor', async(req, res) => {
 
     let record = await addNewVisitor(req.body.visitorname, req.body.assistantname, req.body.visitorage, req.body.visitdate, req.body.visittime, req.body.comments)
 
-    res.send(JSON.stringify(record));
+    res.send(record);
 
     res.end();
 });
@@ -84,14 +81,22 @@ app.get('/viewVisitor:id', async(req, res) => {
     res.end();
 });
 
-app.put('/updateVisitor:id', async(req, res) => {
-    console.log("I am the error: ", req.body.visitorage, req.body.visitorname);
+app.patch('/updateVisitor:id', async(req, res) => {
 
-    // let record = await client.query(`UPDATE visitors SET visitorname='${req.body.visitorname}', asssistantname='${req.body.asssistantname}', visitorage='${req.body.visitorage}', visitdate='${req.body.visitdate}', visittime='${req.body.visittime}', comments='${req.body.comments}' WHERE visitorid=${req.params.id}`);
+    let record = await client.query(
+        `UPDATE visitors 
+        SET visitorname='${req.body.visitorname}',
+        asssistantname='${req.body.assistantname}',
+        visitorage=${req.body.visitorage},
+        visitdate=${req.body.visitdate}, 
+        visittime='${req.body.visittime}', 
+        comments='${req.body.comments}'
+        WHERE visitorid=${req.params.id}`
+    )
 
-    // res.send(record.rows);
+    res.send(record.rows);
 
-    // res.end();
+    res.end();
 });
 
 let server = app.listen(port, () => console.log(`Example app listening on port ${port}!`));
