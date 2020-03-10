@@ -1,7 +1,7 @@
 'use strict';
 
 const express = require('express');
-const path = require('path');
+// const path = require('path');
 require('dotenv').config();
 
 const app = express();
@@ -94,7 +94,7 @@ app.patch('/updateVisitor:id', async(req, res) => {
         WHERE visitorid=${req.params.id}`
     )
 
-    res.send(record.rows);
+    res.send(record);
 
     res.end();
 });
