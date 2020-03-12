@@ -1,5 +1,5 @@
-const axios = require('axios'); // Find out more about axios and how it can be used.
-const readline = require('readline'); // Find out more about readline and how it can be used.
+const axios = require('axios');
+const readline = require('readline');
 require('dotenv').config();
 
 let server;
@@ -7,7 +7,6 @@ let server;
 beforeEach(() => {
     server = require('../src/expose');
 });
-
 
 describe('express /addNewVisitor endpoint', () => {
 
@@ -95,7 +94,7 @@ describe('express /viewVisitor:id endpoint', () => {
     });
 });
 
-fdescribe('express /updateVisitor:id endpoint', () => {
+describe('express /updateVisitor:id endpoint', () => {
     it('should view a visitor with passed id from the database and return the api', async(done) => {
         const response = await axios.patch("http://localhost:1221/updateVisitor1", {
             visitorname: 'Xoliswa',
@@ -112,30 +111,30 @@ fdescribe('express /updateVisitor:id endpoint', () => {
     });
 });
 
-// xdescribe('express /deleteVisitor:id endpoint', () => {
+xdescribe('express /deleteVisitor:id endpoint', () => {
 
 
-//     it('should delete a visitor with passed id from the database and return the api', async(done) => {
-//         const response = await axios.delete("http://localhost:1221/deleteVisitor1");
+    it('should delete a visitor with passed id from the database and return the api', async(done) => {
+        const response = await axios.delete("http://localhost:1221/deleteVisitor1");
 
-//         expect(response.config.url).toEqual('http://localhost:1221/deleteVisitor1');
-//         expect(response.config.method).toEqual('delete');
-//         expect(response.data.command).toEqual('DELETE');
-//         expect(response.data.rowCount).toEqual(1);
+        expect(response.config.url).toEqual('http://localhost:1221/deleteVisitor1');
+        expect(response.config.method).toEqual('delete');
+        expect(response.data.command).toEqual('DELETE');
+        expect(response.data.rowCount).toEqual(1);
 
-//         done();
-//     });
+        done();
+    });
 
-// });
+});
 
-// xdescribe('express /deleteAllVisitors endpoint', () => {
-//     axios.post('http://localhost:1221/addNewVisitor', {
-//         visitorname: "Sihle",
-//         assistantname: "Maphela",
-//         visitorage: "12",
-//         visitdate: "11/24/1997",
-//         visittime: "12:30:AM",
-//         comments: "NOTHING!!!!!!!!!"
-//     });
+xdescribe('express /deleteAllVisitors endpoint', () => {
+    axios.post('http://localhost:1221/addNewVisitor', {
+        visitorname: "Sihle",
+        assistantname: "Maphela",
+        visitorage: "12",
+        visitdate: "11/24/1997",
+        visittime: "12:30:AM",
+        comments: "NOTHING!!!!!!!!!"
+    });
 
-// });
+});
